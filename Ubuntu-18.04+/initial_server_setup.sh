@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ### SCRIPT VARIABLES ###
-USERNAME=abduljabbar
+USERNAME=$1
 
 ### SCRIPT LOGIC ###
 # Add user, with same named group, passing blank gecos values
