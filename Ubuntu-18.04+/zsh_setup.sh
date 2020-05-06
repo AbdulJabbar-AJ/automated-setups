@@ -5,7 +5,7 @@ ZSH_THEME=ys
 
 ### SCRIPT LOGIC ###
 # Install zsh
-apt install zsh -y
+sudo apt install zsh -y
 
 # Install Oh My Zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" “” --unattended
