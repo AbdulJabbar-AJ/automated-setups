@@ -20,7 +20,7 @@ usermod -aG sudo ${USERNAME}
 rsync --archive --chown=${USERNAME}:${USERNAME} ~/.ssh /home/${USERNAME}
 
 # Change Oh My Zsh install directory to new user's home
-export ZSH=/home/“${USERNAME}”
+export ZSH=/home/${USERNAME}
 
 # Install Oh My Zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" “” --unattended
