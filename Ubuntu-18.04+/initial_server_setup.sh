@@ -10,14 +10,14 @@ ZSH_THEME=ys
 apt install zsh -y
 
 # Add user, with same named group, passing blank gecos values
-# adduser --disabled-password --gecos "" --shell /usr/bin/zsh "${USERNAME}" //
-adduser --gecos "" --shell /usr/bin/zsh "${USERNAME}"
+# adduser --disabled-password --gecos "" --shell /usr/bin/zsh ${USERNAME} //
+adduser --gecos "" --shell /usr/bin/zsh ${USERNAME}
 
 # Add user to 'sudo' group
-usermod -aG sudo "${USERNAME}"
+usermod -aG sudo ${USERNAME}
 
 # Copy `authorized_keys` file from root with approriate permissions
-rsync --archive --chown="${USERNAME}":"${USERNAME}" ~/.ssh /home/"${USERNAME}"
+rsync --archive --chown=${USERNAME}:${USERNAME} ~/.ssh /home/${USERNAME}
 
 # Change Oh My Zsh install directory to new user's home
 export ZSH=/home/“${USERNAME}”
@@ -27,7 +27,7 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 # Note: --unattended does not run change default shell script from installer, but default was already set to zsh on user creation
 
 # Change zsh theme
-sed -i ’s/robbyrussell/"${ZSH_THEME}"/g’ /home/"${USERNAME}".zshrc
+sed -i ’s/robbyrussell/${ZSH_THEME}/g’ /home/${USERNAME}.zshrc
 
 
 # Add exception for SSH and then enable UFW firewall
