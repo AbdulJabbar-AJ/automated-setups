@@ -1,8 +1,8 @@
-#!/usr/bin/bash
+#!/bin/bash
 
 ### SCRIPT VARIABLES ###
-# USERNAME=abduljabbar
-# ZSH_THEME=ys
+USERNAME=abduljabbar
+ZSH_THEME=ys
 
 
 ### SCRIPT LOGIC ###
