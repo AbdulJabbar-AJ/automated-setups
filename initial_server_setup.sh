@@ -1,7 +1,9 @@
 #!/bin/bash
 
 ### SCRIPT VARIABLES ###
-USERNAME=$1
+echo "Enter username"
+read VAR
+USERNAME=$VAR
 
 ### SCRIPT LOGIC ###
 # Add user, with same named group, passing blank gecos values

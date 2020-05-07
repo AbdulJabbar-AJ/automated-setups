@@ -11,6 +11,8 @@ The `Initial Server Setup` and `Zsh and Oh My Zsh Setup` are independent from on
 This script can be used when you have already provided you ssh key to DO/your cloud provider. If you are using DO, you must select the correct ssh key when creating a new droplet. If you are using a different cloud provider, much of the same, make sure you have provided your ssh key and your provider can run some scripts or other mechanism to pass your key to the ~/.ssh/authorized_keys file in the root user.
 
 #### Usage
+When you run the script, you will be prompted for 2 things; username and password.
+
 To run the script from file, download and enter the command:
 
     sh initial_server_setup.sh
