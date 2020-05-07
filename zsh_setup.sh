@@ -26,7 +26,8 @@ sudo apt install zsh -y
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" “” --unattended
 
 # Change default shell to Zsh
-chsh $USER -s /bin/zsh
+sudo chsh $USER -s /bin/zsh
+echo "shell changed to zsh"
 
 # Change zsh theme if required
 if [ "$SET_THEME" == "" ]; then
