@@ -34,10 +34,10 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 chsh $USER -s /bin/zsh
 
 # Change zsh theme
-if [ $ZSH_THEME ==  "" ]
+if [[ $ZSH_THEME ==  "" ]]
 then
   echo "Oh My Zsh installed with default theme"
 else
-  sed -i "s:robbyrussel:$ZSH_THEME:" ~/.zshrc
+  sed -i '' "s/robbyrussel2/${ZSH_THEME}/" ~/.zshrc
   echo "Oh My Zsh installed with theme: $ZSH_THEME"
 fi
