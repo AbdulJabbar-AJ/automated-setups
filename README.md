@@ -15,11 +15,11 @@ When you run the script, you will be prompted for 2 things; username and passwor
 
 To run the script from file, download and enter the command:
 
-    sh initial_server_setup.sh
+    bash initial_server_setup.sh
 
 To run the script without downloading the file, enter the command:
 
-    curl -Lo initial_server_setup.sh https://raw.githubusercontent.com/AbdulJabbar-AJ/automated-setups/master/initial_server_setup.sh && sh initial_server_setup.sh && rm initial_server_setup.sh
+    curl -Lo initial_server_setup.sh https://raw.githubusercontent.com/AbdulJabbar-AJ/automated-setups/master/initial_server_setup.sh && bash initial_server_setup.sh && rm initial_server_setup.sh
 
 ------
 
@@ -29,11 +29,11 @@ To run the script without downloading the file, enter the command:
 
 To run the script from file, download and enter the command:
 
-    sh zsh_setup.sh
+    bash zsh_setup.sh
 
 To run the script without downloading the file, enter the command:
 
-    curl -Lo zsh_setup.sh https://raw.githubusercontent.com/AbdulJabbar-AJ/automated-setups/master/zsh_setup.sh && sh zsh_setup.sh && rm zsh_setup.sh
+    curl -Lo zsh_setup.sh https://raw.githubusercontent.com/AbdulJabbar-AJ/automated-setups/master/zsh_setup.sh && bash zsh_setup.sh && rm zsh_setup.sh
 
 
 
@@ -45,8 +45,8 @@ A list of themes can be found in the [Oh My Zsh GitHub Docs](https://github.com/
 
 To change the theme, use the `-t` or `-theme` flag followed by the theme name. For example:
 
-  * `sh zsh_setup.sh -t [THEME_NAME]`
-  * `sh zsh_setup.sh -theme [THEME_NAME]`
+  * `bash zsh_setup.sh -t [THEME_NAME]`
+  * `bash zsh_setup.sh -theme [THEME_NAME]`
 
 Alternatively, just add the `-t` or `-theme` flag, and you will be prompted to enter a theme name.
 
@@ -56,4 +56,4 @@ You may want to log out and log back in again for changes to take affect.
 
 If you want to use the script without downloading the file, you can use the following command, replacing [THEME_NAME] with your theme.
 
-    curl -Lo zsh_setup.sh https://raw.githubusercontent.com/AbdulJabbar-AJ/automated-setups/master/zsh_setup.sh && sh zsh_setup.sh -t [THEME_NAME] && rm zsh_setup.sh
+    curl -Lo zsh_setup.sh https://raw.githubusercontent.com/AbdulJabbar-AJ/automated-setups/master/zsh_setup.sh && bash zsh_setup.sh -t [THEME_NAME] && rm zsh_setup.sh

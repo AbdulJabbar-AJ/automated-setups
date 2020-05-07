@@ -1,26 +1,21 @@
 #!/bin/bash
 
-### OTIONS|FLAGS ###
-if [ -n "$1" ]
-then
-  while [ -n "$1" ]; do
-    case $1 in
+### OPTIONS|FLAGS ###
+SET_THEME=""
+
+while [ -n "$1" ]; do
+    case "$1" in
       -t|-theme)
-        if [ "$2" == "" ]; then
-          echo "Enter theme name or press enter for default"
+        SET_THEME="$2"
+        if [ "$SET_THEME" = "" ]; then
+          echo "Enter a theme or press enter to use default theme"
           read VAR
-          ZSH_THEME="$VAR"
-        else
-          ZSH_THEME="$2"
+          SET_THEME="$VAR"
         fi
 
     esac
       shift
-  done
-else
-  ZSH_THEME=""
-fi
-
+done
 
 
 ### SCRIPT LOGIC ###
@@ -33,11 +28,10 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 # Change default shell to Zsh
 chsh $USER -s /bin/zsh
 
-# Change zsh theme
-if [[ $ZSH_THEME ==  "" ]]
-then
-  echo "Oh My Zsh installed with default theme"
+# Change zsh theme if required
+if [ "$SET_THEME" == "" ]; then
+  echo 'Oh My Zsh installed with default theme'
 else
-  sed -i '' "s/robbyrussel2/${ZSH_THEME}/" ~/.zshrc
-  echo "Oh My Zsh installed with theme: $ZSH_THEME"
+  sed -i "s/robbyrussell/$SET_THEME/" ~/.zshrc
+  echo "Oh My Zsh installed with theme: $SET_THEME"
 fi

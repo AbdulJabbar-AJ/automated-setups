@@ -15,8 +15,10 @@ usermod -aG sudo ${USERNAME}
 # Copy `authorized_keys` file from root to new user with approriate permissions
 rsync --archive --chown=${USERNAME}:${USERNAME} ~/.ssh /home/${USERNAME}
 
+echo "Created user: ${USERNAME}"
+
 # Add exception for SSH and then enable UFW firewall
 ufw allow OpenSSH
 ufw --force enable
 
-echo "Created user: ${USERNAME}. Server initialised."
+echo "Server initialised"
