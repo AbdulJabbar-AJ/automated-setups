@@ -4,7 +4,7 @@ The scripts and document in this repo were originally intended to add a level of
 
 This repo is for `Ubuntu v18.04` and upwards, using `Bash` scripts. They may work on other versions or distributions of linux, but I cannot confirm this.
 
-The `Initial Server Setup` and `ZSh and Oh My Zsh Setup` are independent from one another, however they are included in the same repo as I tend use the first script as root to set up the server, then log in as a normal user and perform zsh setup.
+The `Initial Server Setup` and `Zsh and Oh My Zsh Setup` are independent from one another, however they are included in the same repo as I tend use the first script as root to set up the server, then log in as a normal user and perform zsh setup.
 
 ------
 ## Initial Server Setup  
