@@ -34,7 +34,7 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 chsh $USER -s /bin/zsh
 
 # Change zsh theme
-if [[ $ZSH_THEME ==  "" ]]
+if [ $ZSH_THEME ==  "" ]
 then
   echo "Oh My Zsh installed with default theme"
 else
