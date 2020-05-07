@@ -30,6 +30,8 @@ sudo apt install zsh -y
 # Install Oh My Zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" “” --unattended
 
+# Change default shell to Zsh
+chsh $USER -s /bin/zsh
 
 # Change zsh theme
 if [[ $ZSH_THEME ==  "" ]]

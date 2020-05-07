@@ -33,7 +33,7 @@ To run the script from file, download and enter the command:
 
 To run the script without downloading the file, enter the command:
 
-    curl -Lo zsh_setup.sh https://raw.githubusercontent.com/AbdulJabbar-AJ/automated-setups/master/Ubuntu-18.04%2B/initial_server_setup.sh && sh zsh_setup.sh && rm zsh_setup.sh
+    curl -Lo zsh_setup.sh https://raw.githubusercontent.com/AbdulJabbar-AJ/automated-setups/master/zsh_setup.sh && sh zsh_setup.sh && rm zsh_setup.sh
 
 
 
@@ -56,4 +56,4 @@ You may want to log out and log back in again for changes to take affect.
 
 If you want to use the script without downloading the file, you can use the following command, replacing [THEME_NAME] with your theme.
 
-    curl -Lo zsh_setup.sh https://raw.githubusercontent.com/AbdulJabbar-AJ/automated-setups/master/Ubuntu-18.04%2B/initial_server_setup.sh && sh zsh_setup.sh -t [THEME_NAME] && rm zsh_setup.sh
+    curl -Lo zsh_setup.sh https://raw.githubusercontent.com/AbdulJabbar-AJ/automated-setups/master/zsh_setup.sh && sh zsh_setup.sh -t [THEME_NAME] && rm zsh_setup.sh
