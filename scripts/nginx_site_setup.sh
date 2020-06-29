@@ -8,6 +8,7 @@ while [ -n "$1" ]; do
     -m|--main-url) MAIN=true;;
     -ns|--non-static) NS=true;;
     -q|--quiet) QUIET=true;;
+    -sdo|--skip-do) IGNORE_DO=true;;
     -u|--url) URL="$2" && shift;;
     -p|--port) PORT="$2" && shift;;
     *) echo "Option $1 not recognized" && exit 1;;
@@ -19,12 +20,14 @@ done
 
 ### SOME CHECKS ##
 # Confirm Digital Ocean Default Project
-if [ -z "$QUIET" ]; then
-  echo "You default Digital Ocean Project is: '$DO_PROJ_NAME' (ID: $DO_PROJ_ID)"
-  echo -n  "Enter 'y' to continue: "
-  read VAR && ANSWER="$VAR"
-  if [ ! "$ANSWER" = "y" ];then
-    exit 1
+if [ -z "$IGNORE_DO" ]; then
+  if [ -z "$QUIET" ]; then
+    echo "You default Digital Ocean Project is: '$DO_PROJ_NAME' (ID: $DO_PROJ_ID)"
+    echo -n  "Enter 'y' to continue: "
+    read VAR && ANSWER="$VAR"
+    if [ ! "$ANSWER" = "y" ];then
+      exit 1
+    fi
   fi
 fi
 
@@ -76,59 +79,62 @@ fi
 
 
 ## Add URL to Digital Ocean (Requires doctl) ##
+if [ -z "$IGNORE_DO" ]; then
         echo "Check existing Digital Ocean resources"
-EXISTS=$(doctl projects resources list $DO_PROJ_ID | grep -q "do:domain:$URL" && echo 1)
-if [ -n "$EXISTS" ]; then
-  echo "Domain already exists in Digital Ocean Project"
-else
-  echo "Adding URL to Digital Ocean Default Project"
-  sudo doctl compute domain create $URL --ip-address $DO_PROJ_IP
+  EXISTS=$(doctl projects resources list $DO_PROJ_ID | grep -q "do:domain:$URL" && echo 1)
+  if [ -n "$EXISTS" ]; then
+    echo "Domain already exists in Digital Ocean Project"
+  else
+    echo "Adding URL to Digital Ocean Default Project"
+    sudo doctl compute domain create $URL --ip-address $DO_PROJ_IP
+  fi
 fi
+
 
 
         echo "Generating Nginx configuration ......."
 ## Write out the config file ##
 # Start the file
 echo "server {
-        listen          443 ssl http2;
-        listen          [::]:443 ssl http2;" > $CONF_FILE
+	listen		443 ssl http2;
+	listen		[::]:443 ssl http2;" > $CONF_FILE
 
 
 # Inlclude static files
 if [ -z "$NS" ]; then
 echo \
-  "     root            $WORKDIR;
-        index           index.html;" >> $CONF_FILE
+  "	root		$WORKDIR;
+	index		index.html;" >> $CONF_FILE
 fi
 
 
 # Server name directive
-echo "  server_name     $SERVER_NAME;"  >> $CONF_FILE
+echo "	server_name	$SERVER_NAME;"  >> $CONF_FILE
 
 
 # Include redirect
 if [ -n "$MAIN" ]; then
 echo "
-        if (\$host = $URL) {
-                return 301 https://www.\$host\$request_uri;
-        }
-        " >> $CONF_FILE
+	if (\$host = $URL) {
+		return 301 https://www.\$host\$request_uri;
+	}
+	" >> $CONF_FILE
 fi
 
 
 # Resolve files or port
 if [ -z "$NS" ]; then
-  echo "        location / { try_files \$uri \$uri/ =404; }" >> $CONF_FILE
+  echo "	location / { try_files \$uri \$uri/ =404; }" >> $CONF_FILE
 else
   echo "
-        location / {
-                proxy_pass http://localhost:$PORT;
-                proxy_http_version 2.0;
-                proxy_set_header Upgrade \$http_upgrade;
-                proxy_set_header Connection 'upgrade';
-                proxy_set_header Host \$host;
-                proxy_cache_bypass \$http_upgrade;
-        }" >> $CONF_FILE
+	location / {
+		proxy_pass http://localhost:$PORT;
+		proxy_http_version 2.0;
+		proxy_set_header Upgrade \$http_upgrade;
+		proxy_set_header Connection 'upgrade';
+		proxy_set_header Host \$host;
+		proxy_cache_bypass \$http_upgrade;
+	}" >> $CONF_FILE
 fi
 
 # Close main block
@@ -139,10 +145,10 @@ echo "}
 # Listen for HTTP
 echo \
 "server {
-        listen          80;
-        listen          [::]:80;
-        server_name     $SERVER_NAME;
-        return          301 https://\$host\$request_uri;
+	listen		80;
+	listen		[::]:80;
+	server_name	$SERVER_NAME;
+	return		301 https://\$host\$request_uri;
 }" >> $CONF_FILE
 
 
@@ -155,4 +161,4 @@ systemctl restart nginx
 
 ### Write out exit message ###
 echo "Script completed!"
-echo "Check config file at $CONF_FILE"
+echo "Check config file at \e[33m$CONF_FILE\e[0m"

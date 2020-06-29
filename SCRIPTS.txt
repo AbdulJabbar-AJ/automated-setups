@@ -1,0 +1,142 @@
+--------------------------------
+********************************
+***** INITIAL SERVER SETUP *****
+********************************
+--------------------------------
+PERFORMS
+--------
+- Create a new user with same name group
+- Adds user to sudo group
+- Moves authorised keys from root to new user's home .ssh diretory
+- Allows SSH access via new user
+------------------------------------------------------------------
+REQUIRES
+--------
+- Option USERNAME:	"-u abduljabbar"	|-OR-|	"--username abduljabbar"	|-OR-|	username as prompt
+- option PASSWORD: Must be prompted in order to be secure
+------------------------------------------------------------------------------------------------------
+
+
+// A note on ssh authentication
+Default when creating droplet with ssh key from DO dashboard (none of these are hashed out)
+- PermitRootLogin yes
+- PasswordAuthentication no
+- ChallengeResponseAuthentication no
+- UsePAM yes
+This is acceptable, it allows root but prevents password authentications
+
+
+
+
+
+
+
+
+
+---------------------
+*********************
+***** ZSH SETUP *****
+*********************
+---------------------
+PERFORMS
+--------
+- Installs ZSh
+- Installs Oh My Zsh
+- Changes default shell for current user
+- Can change theme with flags
+----------------------------------------
+OPTIONS
+-------
+- THEME:	"-t $THEME_NAME"	|-OR-|	"--theme $THEME_NAME"
+-------------------------------------------------------------
+REQUIRES
+--------
+- Manual reload: exit and re-login if first time setup, otherwise run "source ~/.zshrc"
+--------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+-----------------------
+***********************
+***** NGINX SETUP *****
+***********************
+-----------------------
+PERFORMS
+--------
+- Installs Nginx
+- Opens firewall ports 80 and 443 for Nginx web server
+- Creates a default server code block in .../sites-available/default, routes all to 403 forbidden
+- Restarts nginx
+-------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+--------------------------
+**************************
+***** NEW SITE SETUP *****
+**************************
+--------------------------
+PERFORMS
+--------
+-Ignore flags-			-Task-
+--------------			------
+-q -sdo					- Confirms $DO_PROJ_NAME, $DO_PROJ_ID variables
+						- Creates named nginx config file
+						- Create symbolic link to file in sites-enabled directory
+-ns						- Creates static assets directory with permissions and copies Nginx "hello world" file
+-sdo					- Creates Digital Ocean URL resource based on $URL and $DO_PROJ_IP
+						- Populates Nginx config file
+						- Restarts Nginx
+------------------------------------
+
+FLAGS
+-----
+- MAIN URL:							"--main-url"	|-OR-|	"-m"
+- NON-STATIC SITE:					"--non-static"	|-OR-|	"-ns"
+- QUIET:							"--quiet"		|-OR-|	"-q"
+- SKIP DO STUFF:					"--skip-do"		|-OR-|	"-sdo"
+-----------------------------------------------------------------
+
+OPTIONS
+-------
+- URL:	for Nginx & DO -->			"--url abc.xyz"	|-OR-|	"-u abc.xyz"
+- PORT:	for docker projects -->		"--port 0000"	|-OR-|	"-port 0000"
+-------------------------------------------------------------------------
+
+NOTES
+-----
+- Required flags and options vary
+- Include -sdo flag for test runs without digital ocean url resource stuff
+---------------------------------
+
+EXAMPLES
+--------
+KEY: ? = optional
+
+FOR STATIC SITE
+	-m? -q? -u abc.xyz
+	-m? -q? 	--> 	url prompt
+FOR DOCKER PROJECT
+	-ns -q? -url abc.xyz -p 8000
+	-ns -q? 	-->		url prompt	-->	port prompt
+--------------------------------
+
+
