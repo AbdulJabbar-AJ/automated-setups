@@ -11,5 +11,9 @@
 
 #### Options
 - Theme
-  - Sets theme for Oh-My-Zsh
-  - Usage `--theme $THEME_NAME` or `-t $THEME_NAME`
+  - Sets theme for Oh-My-Zsh, default is 'robbyrussell', I prefer 'ys'
+  - Usage `--theme $THEME_NAME` or `-t $THEME_NAME` or `-t` flag ==> Prompt for theme
+
+
+#### Notes
+- A list of themes can be found in the [Oh My Zsh GitHub Docs](https://github.com/ohmyzsh/ohmyzsh/wiki/Themes)
