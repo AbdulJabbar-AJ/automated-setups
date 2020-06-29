@@ -1,14 +1,20 @@
 # Automated Setups
 
-The scripts and document in this repo were originally intended to add a level of automation to Digital Ocean Droplet (DO) setups when adding a server from their web UI. If you want a more automated, comprehensive, and customisable solution, then I suggest you check out DO's API and/or CLI docs.
+The scripts in this repo are intended for use with Digital Ocean (DO) Droplets when using their Ubuntu OS image. They may be usable or modified to be used on any other setup.
 
-This repo is for `Ubuntu v18.04` and upwards, using `Bash` scripts. They may work on other versions or distributions of linux, but I cannot confirm this.
-
-The `Initial Server Setup` and `Zsh and Oh My Zsh Setup` are independent from one another, however they are included in the same repo as I tend use the first script as root to set up the server, then log in as a normal user and perform zsh setup.
+The `Initial Server Setup` should always be run first on a new server, and you must have a valid SSH key selected when creating the droplet.
 
 ------
 ## Initial Server Setup  
 This script can be used when you have already provided your ssh key to DO/your cloud provider. If you are using DO, you must select the correct ssh key when creating a new droplet. If you are using a different cloud provider, much of the same, make sure you have provided your ssh key and your provider can run some scripts or other mechanism to pass your key to the ~/.ssh/authorized_keys file in the root user.
+
+# Remote Usage
+If you'd like to run any of these scripts without manually downloading the file, you can use curl or wget or something similar. Here is an example usage, make sure to add any flags or options before the '
+    
+    curl -Lo script.sh https://raw.githubusercontent.com/AbdulJabbar-AJ/automated-setups/master/scripts/initial_server_setup.sh && bash script.sh && rm script.sh
+
+
+
 
 #### Usage
 When you run the script, you will be prompted for 2 things; username and password.
@@ -19,7 +25,7 @@ To run the script from file, download and enter the command:
 
 To run the script without downloading the file, enter the command:
 
-    curl -Lo initial_server_setup.sh https://raw.githubusercontent.com/AbdulJabbar-AJ/automated-setups/master/scripts/initial_server_setup.sh && bash initial_server_setup.sh && rm initial_server_setup.sh
+    
 
 ------
 
