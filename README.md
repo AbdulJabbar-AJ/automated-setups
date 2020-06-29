@@ -4,6 +4,8 @@ The scripts in this repo are intended for use with Digital Ocean (DO) Droplets w
 
 The `Initial Server Setup` should always be run first on a new server, and you must have a valid SSH key selected when creating the droplet.
 
+Each script has a corresponding 'doc' file in the `docs` folder, which serves instructions on how to use the scripts.
+
 # Remote Usage
 If you'd like to run any of these scripts without manually downloading the file, you can use curl or wget or something similar, as these scripts are public.
 
