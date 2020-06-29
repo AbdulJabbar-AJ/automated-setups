@@ -65,18 +65,28 @@ REQUIRES
 
 
 
------------------------
-***********************
-***** NGINX SETUP *****
-***********************
------------------------
+-------------------------------
+*******************************
+***** INITIAL NGINX SETUP *****
+*******************************
+-------------------------------
 PERFORMS
 --------
 - Installs Nginx
 - Opens firewall ports 80 and 443 for Nginx web server
+- Sets up global TLS encryption
 - Creates a default server code block in .../sites-available/default, routes all to 403 forbidden
 - Restarts nginx
--------------------------------------------------------------------------------------------------
+----------------
+REQUIRES
+--------
+- Have TLS certificates on machine
+- Manually edit nginx.conf file for cert paths
+----------------------------------------------
+NOTES
+-----
+- This setup only works if server serves one primary url, would have to configure differently if serving various urls
+---------------------------------------------------------------------------------------
 
 
 
@@ -87,13 +97,13 @@ PERFORMS
 
 
 
+** Still need way of finding ip address of target droplet
 
-
---------------------------
-**************************
-***** NEW SITE SETUP *****
-**************************
---------------------------
+----------------------------
+****************************
+***** NGINX SITE SETUP *****
+****************************
+----------------------------
 PERFORMS
 --------
 -Ignore flags-			-Task-
@@ -123,6 +133,7 @@ OPTIONS
 
 NOTES
 -----
+- Must run with sudo
 - Required flags and options vary
 - Include -sdo flag for test runs without digital ocean url resource stuff
 ---------------------------------
@@ -132,11 +143,11 @@ EXAMPLES
 KEY: ? = optional
 
 FOR STATIC SITE
-	-m? -q? -u abc.xyz
-	-m? -q? 	--> 	url prompt
+	sudo bash SCRIPT.sh -m? -q? -u abc.xyz
+	sudo bash SCRIPT.sh -m? -q? 	--> 	url prompt
 FOR DOCKER PROJECT
-	-ns -q? -url abc.xyz -p 8000
-	-ns -q? 	-->		url prompt	-->	port prompt
+	sudo bash SCRIPT.sh -ns -q? -url abc.xyz -p 8000
+	sudo bash SCRIPT.sh -ns -q? 	-->		url prompt	-->	port prompt
 --------------------------------
 
 

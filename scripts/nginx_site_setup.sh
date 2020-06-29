@@ -18,6 +18,9 @@ done
 
 
 
+DO_PROJ_ID=$(doctl projects get default --format ID | xargs | sed -E 's/ID //' )
+DO_PROJ_NAME=$(doctl projects get default --format Name | xargs | sed -E 's/Name //')
+
 ### SOME CHECKS ##
 # Confirm Digital Ocean Default Project
 if [ -z "$IGNORE_DO" ]; then

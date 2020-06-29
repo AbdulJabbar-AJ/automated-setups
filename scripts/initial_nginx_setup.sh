@@ -1,3 +1,7 @@
+#!/bin/bash
+
+CONF_FILE=/etc/nginx/nginx.conf
+
 # Install Nginx
 sudo apt update
 sudo apt install nginx -y
@@ -11,10 +15,12 @@ sudo systemctl restart nginx
 
 # Config file tweaks
 # Set hash bucket size
-sudo sed -i "s/# server_names_hash_bucket_size/server_names_hash_bucket_size/" /etc/nginx/nginx.conf
+sudo sed -i "s/# server_names_hash_bucket_size/server_names_hash_bucket_size/" $CONF_FILE
 # Setup TLS encryption
-sed -i -E "s,ssl_protocols(.*),ssl_certificate			PATH/TO/fullchain.pem;\n	ssl_certificate_key		PATH/TO/privkey.pem;\n	ssl_protocols			TLSv1.3;," /etc/nginx/nginx.conf
-sed -i "s/server_ciphers on/server_ciphers	off/" /etc/nginx/nginx.conf
+# First delete existing ssl certificate paths if any
+sed -i -E "/  ssl_certificate(.*)/d" $CONF_FILE
+sed -i -E "s,ssl_protocols(.*),ssl_certificate			/etc/letsencrypt/live/ENTER_URL_HERE/fullchain.pem;\n	ssl_certificate_key		/etc/letsencrypt/live/ENTER_URL_HERE/privkey.pem;\n	ssl_protocols			TLSv1.3;," $CONF_FILE
+sed -i "s/server_ciphers on/server_ciphers	off/" $CONF_FILE
 
 
 # Change ownership of 'default' config file
