@@ -7,8 +7,7 @@
 
 #### Requires
 - A valid DO API Token, will be prompted to enter
-
-#### Flags and Options
+web
 - Context
   - Name of authenticating user/machine:
   - Usage `--context $CONTEXT_NAME` or `-c $CONTEXT_NAME`

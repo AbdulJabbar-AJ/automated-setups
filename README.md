@@ -12,5 +12,3 @@ If you'd like to run any of these scripts without manually downloading the file,
 Here is an example usage. Make sure to replace $SCRIPT with the correct script name, and add any flags or options before the `&& rm script.sh`. This will also delete the script after running it.
 
 `curl -Lo script.sh https://raw.githubusercontent.com/AbdulJabbar-AJ/automated-setups/master/scripts/$SCRIPT.sh && bash script.sh && rm script.sh`
-
-

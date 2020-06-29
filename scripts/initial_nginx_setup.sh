@@ -38,8 +38,3 @@ sudo echo "server {
 
 
 
-# Restart Nginx
-sudo nginx -t
-sudo systemctl restart nginx
-
-

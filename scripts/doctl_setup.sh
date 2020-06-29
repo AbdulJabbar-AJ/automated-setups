@@ -42,7 +42,7 @@ doctl account get
 
 # Add completions
 doctl completion zsh
-sed -i "s,source $ZSH/oh-my-zsh.sh,source $ZSH/oh-my-zsh.sh\nsource  <(doctl completion zsh)," ~/.zshrc
+sed -i "s/source \$ZSH\/oh-my-zsh.sh/source \$ZSH\/oh-my-zsh.sh\nsource  <(doctl completion zsh)/" ~/.zshrc
 
 echo -e "\e[33mdoctl installed:\e[0m \e[34m$SET_THEME\e[0m"
 echo -e "\e[32mReload required, enter command below:\e[0m"

@@ -9,6 +9,7 @@ while [ -n "$1" ]; do
     -ns|--non-static) NS=true;;
     -q|--quiet) QUIET=true;;
     -sdo|--skip-do) IGNORE_DO=true;;
+  	-ip|--ip-address) DO_PROJ_IP:"$2";;
     -u|--url) URL="$2" && shift;;
     -p|--port) PORT="$2" && shift;;
     *) echo "Option $1 not recognized" && exit 1;;

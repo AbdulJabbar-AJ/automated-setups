@@ -12,6 +12,7 @@
 
 #### Requires
 - doctl to be installed
+- -ip option to be invoked if doing DO stuff
 - run with `sudo`
 
 #### Flags
@@ -35,6 +36,9 @@
 - Port
   - Only is `-ns` flag is set, port for Docker projects
   - Usage `--port 0000` or `-p 0000`
+- IP Address
+    - The IP address of the Digital Ocean droplet. Currently there's no stable way to reteive this from DO or the the shell.
+    - Usage `--ip-address 00.00.00.00` or `-ip 00.00.00.00`
 
 
 #### Examples
