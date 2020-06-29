@@ -54,3 +54,9 @@
 
 --- 
 ** Still need way of finding ip address of target droplet
+
+
+curl -Lo script.sh https://raw.githubusercontent.com/AbdulJabbar-AJ/automated-setups/master/scripts/nginx_site_setup.sh && bash script.sh -c website-dev && rm script.sh
+
+
+

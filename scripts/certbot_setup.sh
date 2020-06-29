@@ -33,7 +33,7 @@ sudo certbot certonly \
 	--dns-digitalocean \
 	--dns-digitalocean-credentials ~/.secrets/certbot/digitalocean.ini \
 	--dns-digitalocean-propagation-seconds 60 \
-	-d \*.URL \
+	-d \*.$URL \
 	-d $URL
 
 
