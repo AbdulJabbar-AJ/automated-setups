@@ -1,15 +1,10 @@
 #!/bin/bash
 
-echo "Welcome to the the 'New Project' script"
-
 ### OPTIONS|FLAGS ###
 while [ -n "$1" ]; do
   case "$1" in
     -m|--main-url) MAIN=true;;
     -ns|--non-static) NS=true;;
-    -q|--quiet) QUIET=true;;
-    -sdo|--skip-do) IGNORE_DO=true;;
-  	-ip|--ip-address) DO_PROJ_IP="$2";;
     -u|--url) URL="$2" && shift;;
     -p|--port) PORT="$2" && shift;;
     *) echo "Option $1 not recognized" && exit 1;;
@@ -18,24 +13,7 @@ while [ -n "$1" ]; do
 done
 
 
-
-DO_PROJ_ID=$(doctl projects get default --format ID | xargs | sed -E 's/ID //' )
-DO_PROJ_NAME=$(doctl projects get default --format Name | xargs | sed -E 's/Name //')
-
 ### SOME CHECKS ##
-# Confirm Digital Ocean Default Project
-if [ -z "$IGNORE_DO" ]; then
-  if [ -z "$QUIET" ]; then
-    echo "You default Digital Ocean Project is: '$DO_PROJ_NAME' (ID: $DO_PROJ_ID)"
-    echo -n  "Enter 'y' to continue: "
-    read VAR && ANSWER="$VAR"
-    if [ ! "$ANSWER" = "y" ];then
-      exit 1
-    fi
-  fi
-fi
-
-
 # Make sure URL is set, otherwise prompt
 if [ -z "$URL" ]; then
   echo -n "Enter project URL: "
@@ -50,18 +28,12 @@ if [[ "$NS" = true && -z "$PORT" ]]; then
 fi
 
 
-
-
-
 ### VARIABLESS ###
 NGINX_DIR=/etc/nginx
 CONF_FILE=$NGINX_DIR/sites-available/$URL
 
 if [ -z "$NS" ]; then WORKDIR=/var/www/$URL/html; fi
 if [ -n "$MAIN" ]; then SERVER_NAME="$URL www.$URL"; else SERVER_NAME=$URL; fi
-
-
-
 
 
 
@@ -80,20 +52,6 @@ if [ -z "$NS" ]; then
         echo "adjusting static assets directory permissions"
   chown -R $USER:$USER $WORKDIR
 fi
-
-
-## Add URL to Digital Ocean (Requires doctl) ##
-if [ -z "$IGNORE_DO" ]; then
-        echo "Check existing Digital Ocean resources"
-  EXISTS=$(doctl projects resources list $DO_PROJ_ID | grep -q "do:domain:$URL" && echo 1)
-  if [ -n "$EXISTS" ]; then
-    echo "Domain already exists in Digital Ocean Project"
-  else
-    echo "Adding URL to Digital Ocean Default Project"
-    sudo doctl compute domain create $URL --ip-address $DO_PROJ_IP
-  fi
-fi
-
 
 
         echo "Generating Nginx configuration ......."
@@ -165,4 +123,4 @@ systemctl restart nginx
 
 ### Write out exit message ###
 echo "Script completed!"
-echo "Check config file at \e[33m$CONF_FILE\e[0m"
+echo -e "Check config file at \e[33m$CONF_FILE\e[0m"
