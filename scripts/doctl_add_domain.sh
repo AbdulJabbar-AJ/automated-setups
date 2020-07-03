@@ -42,7 +42,7 @@ if [ -n "$EXISTS" ]; then
 	echo "Domain already exists in Digital Ocean Project"
 else
 	echo "Adding URL to Digital Ocean Default Project"
-	sudo doctl compute domain create $URL --ip-address $DO_PROJ_IP
+	doctl compute domain create $URL --ip-address $DO_PROJ_IP
 fi
 
 
