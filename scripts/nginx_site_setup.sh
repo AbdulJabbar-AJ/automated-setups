@@ -1,5 +1,10 @@
 #!/bin/bash
 
+if [ $USER != root ]; then
+  echo -e "\e[33mYou must run this script with sudo\e[0m";
+  exit 1
+fi
+
 ### OPTIONS|FLAGS ###
 while [ -n "$1" ]; do
   case "$1" in
@@ -125,7 +130,7 @@ echo \
 
 
 
-### Check Config and restart Nginxe ###
+### Check Config and restart Nginx ###
 nginx -t
 systemctl restart nginx
 
