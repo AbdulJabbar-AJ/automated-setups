@@ -7,6 +7,7 @@ while [ -n "$1" ]; do
     -ns|--non-static) NS=true;;
     -u|--url) URL="$2" && shift;;
     -p|--port) PORT="$2" && shift;;
+    -us|--user) USR="$2" && shift;;
     *) echo "Option $1 not recognized" && exit 1;;
   esac
     shift
@@ -18,6 +19,13 @@ done
 if [ -z "$URL" ]; then
   echo -n "Enter project URL: "
   read VAR && URL="$VAR"
+fi
+
+
+# Make sure User is set if static site, otherwise prompt
+if [[ -z "$NS" && -z "$USR" ]]; then
+  echo -n -e "User needed for static files directory permissions \n\e[33mEnter username:\e[0m "
+  read VAR && USR="$VAR"
 fi
 
 
@@ -50,7 +58,7 @@ if [ -z "$NS" ]; then
   mkdir -p $WORKDIR
   cp /usr/share/nginx/html/index.html $WORKDIR
         echo "adjusting static assets directory permissions"
-  chown -R $USER:$USER $WORKDIR
+  chown -R $USR:$USR $WORKDIR
 fi
 
 
