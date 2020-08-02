@@ -25,6 +25,8 @@
 - Port
   - Only is `-ns` flag is set, port for Docker projects
   - Usage `--port 0000` or `-p 0000`
-
+- User
+    - Enter the name of the user for directory permissions
+    Usage `--user abduljabbar` or `-us abduljabbar`
 
 
